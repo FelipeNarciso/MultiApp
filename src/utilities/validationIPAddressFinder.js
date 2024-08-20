@@ -1,0 +1,1 @@
+import * as yup from 'yup' // Importa a biblioteca yup para vazer validações do JSON recebido da API
