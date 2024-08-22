@@ -1,6 +1,7 @@
 import { useState } from 'react'; // Importa o hook useState do React
 import axios from 'axios'; // Importa a biblioteca axios para fazer requisições HTTP
 import styled from 'styled-components'; // Importa styled-components para estilizar os componentes
+import { validacaoIP } from '../utilities/validationIPAddressFinder' // Importa o arquivo com o esquema de validação
 
 // Define o estilo do container principal
 const Container = styled.div`
@@ -67,6 +68,7 @@ const ResultsContainer = styled.div`
   width: 100%;
 `;
 
+// Define o estilo das mensagens de erro
 const Error = styled.span`
     padding-top: 20px;
 `;
@@ -84,7 +86,12 @@ const IPAddressFinder = () => {
       setErro('') // Limpa o alerta de erro sempre que faz uma nova requisição
       const url = `https://ipinfo.io/${ip}/json`
       const response = await axios.get(url); // Faz uma requisição GET para a API ipinfo.io
-      setIpData(response.data); // Armazena os dados da resposta no estado ipData
+      try{
+        await validacaoIP.validate(response.data) // Validação dos dados recebidos
+        setIpData(response.data); // Armazena os dados da resposta no estado ipData
+      }catch(error){
+        setErro('Erro ao validar os dados da requisição. Tente novamente!') // Mostra um erro para o usuário caso os dados nao estiverem válidos
+      }
     } catch (error) {
       setErro('Erro ao localizar o IP, verifique os dados e tente novamente!') // Exibe um erro em caso de falha 
       console.error('Ocorreu um erro: ' , error) // Exibe também um erro no console para melhor identificação

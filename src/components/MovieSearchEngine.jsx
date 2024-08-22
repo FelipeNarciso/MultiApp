@@ -111,7 +111,7 @@ const MovieSearchEngine = () => {
   // Função para buscar filmes
   const searchMovies = async () => {
     setMovies([])
-    setError('')
+    setError('') // Limpa o estado error a cada requisição
     try {
       const response = await axios.get('https://api.themoviedb.org/3/search/movie', { // Requisição para a API do TMDB
         params: {

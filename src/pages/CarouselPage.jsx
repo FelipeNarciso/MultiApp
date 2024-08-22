@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import { useCarousel } from '../services/CarouselContext';
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import {FaArrowLeft} from "react-icons/fa"
-import QRCodeGenerator from "../components/QRCodeGenarator";
-import IPAddressFinder from "../components/IPAddressFinder";
-import MovieSearchEngine from "../components/MovieSearchEngine";
-import TodoApp from "../components/TodoApp";
-import QuizApp from "../components/QuizApp";
-import LanguageTranslator from "../components/LanguageTranslator";
+import styled from "styled-components"; // Importa o styled-componentes
+import { useCarousel } from '../services/CarouselContext'; // Importa o hook personalizado para acessar o os estados do Carrosel
+import { Carousel } from "react-responsive-carousel"; // Importa a biblioteca do carrossel
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importa os estilos padrão do carrossel da biblioteca react-responsive-carousel
+import {FaArrowLeft} from "react-icons/fa" // Importa o react icon do botão de return
+import QRCodeGenerator from "../components/QRCodeGenarator"; // Importa o componente QRCodeGenerator
+import IPAddressFinder from "../components/IPAddressFinder"; // Importa o componente IPAddressFinder
+import MovieSearchEngine from "../components/MovieSearchEngine"; // Importa o componente MovieSearchEngine
+import TodoApp from "../components/TodoApp"; // Importa o componente TodoApp
+import QuizApp from "../components/QuizApp"; // Importa o componente QuizApp
+import LanguageTranslator from "../components/LanguageTranslator"; // Importa o componente LanguageTranslator
 
 // Estiliza o contêiner do carrossel.
 const CarouselContainer = styled.div`
@@ -93,7 +93,7 @@ const ReturnButton = styled.button`
 `;
 
 function CarouselPage() {
-  const { carouselIndex, setCarouselIndex, currentComponent, setCurrentComponent } = useCarousel();
+  const { carouselIndex, setCarouselIndex, currentComponent, setCurrentComponent } = useCarousel(); // Usa o hook personalizado para acessar e controlar o estado do carrossel.
 
   // Função para definir o componente atual a ser exibido e atualizar o índice do carrossel.
    const handleAccess = (index, component) => {

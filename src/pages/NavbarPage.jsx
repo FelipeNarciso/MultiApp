@@ -1,16 +1,8 @@
-import styled from "styled-components";
-import {
-  FaQrcode,
-  FaSearch,
-  FaTasks,
-  FaRegQuestionCircle,
-  FaGlobeAmericas,
-  FaNetworkWired,
-  FaBars,
-} from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useCarousel } from '../services/CarouselContext';
+import styled from "styled-components"; // Importa o styled-componentes
+import {FaQrcode, FaSearch, FaTasks, FaRegQuestionCircle, FaGlobeAmericas, FaNetworkWired, FaBars} from "react-icons/fa"; // Importa os icones para cada link
+import { useNavigate } from "react-router-dom"; // Importa o hook para fazer navegações entre as rotas
+import { useState } from "react"; // Importa o hook useState do React 
+import { useCarousel } from '../services/CarouselContext'; // // Importa o hook personalizado para acessar o os estados do Carrosel
 
 // Estiliza a barra de navegação.
 const NavBar = styled.div`
@@ -75,21 +67,24 @@ const StyledLink = styled.div`
  // Estiliza o botão de logout
  const BtnLogout = styled.button`
   margin-top: 20px;
-  background-color: transparent;
+  border: none;
+  background: none;
+  color: white;
 
   &:hover{
-    background: none;
+    cursor: pointer;
   }
  `
 
 
 function NavbarPage() {
-  const navigate = useNavigate();
-  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
-  const { carouselIndex, setCarouselIndex, currentComponent, setCurrentComponent } = useCarousel();
+  const navigate = useNavigate(); // Usa o hook useNavigate do React Router para obter a função navigate.
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false); // Usa o hook useState para criar um estado local
+  const { carouselIndex, setCarouselIndex, currentComponent, setCurrentComponent } = useCarousel(); // Usa o hook personalizado useCarousel para acessar e controlar o estado do carrossel
 
   // Função para simular logout e redirecionar para a página de login.
   const handleLogout = () => {
+    localStorage.removeItem("jwt")
     navigate("/");
   };
 

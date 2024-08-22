@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'; // Importa o hook useState do React
+import { useState } from 'react'; // Importa o hook useState do React
 import styled from 'styled-components'; // Importa styled-components para estilizar os componentes
 import { useNavigate } from 'react-router-dom'; // Importa o hook para fazer navegações entre páginas
+import { createJWT } from '../utilities/jwtGenerator' // Importa a função para criar um JWT 
 
 
 // Define o estilo do container principal do login
@@ -69,10 +70,10 @@ const Login = () => {
   const navigate = useNavigate() // Define o hook useNavigate
 
   // Função para lidar com o envio do formulário
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
-    let userCorreto = true 
-    let passwordCorreto = true
+    let userCorreto = true // Define uma variavel para controlar quando o usuário estiver correto
+    let passwordCorreto = true // Define uma variavel para controlar quando a senha estiver correta
 
     if(username === ''){
       setErroUser('Required field!') // Exibe um alerta se o campo estiver vazio
@@ -81,8 +82,8 @@ const Login = () => {
       setErroUser('Invalid username!') // Exibe um alerta se o usuário for incorreto
       userCorreto = false
     }else{
-      setErroUser('')
-      userCorreto = true 
+      setErroUser('') // Limpa o erro se o usuário estiver certo
+      userCorreto = true // Define a variável de controle como true
     }
    
     if(password === ''){
@@ -92,11 +93,12 @@ const Login = () => {
       setErroPassword('Invalid password!') // Exibe um alerta se a senha for incorreta
       passwordCorreto = false
     }else{
-      setErroPassword('')
-      passwordCorreto = true
+      setErroPassword('') // Limpa o erro se a senha estiver certa
+      passwordCorreto = true // Define a variável de controle como true
     }
     
     if(userCorreto == true && passwordCorreto == true){
+      const jwt = await createJWT({ user_id: username, role: 'admin' }); // Cria um JWT
       navigate('/PaginaInicial') // Navega para a página inicial se o login estiver correto
     }
   };
