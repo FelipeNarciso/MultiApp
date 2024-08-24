@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose' // Importa apenas as funções de criar e verificar o JWT da biblioteca 'jose'
 
-// Defina a chave secreta codificada em base64
+// Define a chave secreta
 const secretKey = new TextEncoder().encode('0123456789')
 
 // Função para criar um JWT

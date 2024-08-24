@@ -19,7 +19,7 @@ const Footer = styled.div`
 function FooterApp(){
     return(
         <>
-            <Footer>© 2024 Your Company | All rights reserved</Footer>
+          <Footer>© 2024 Your Company | All rights reserved</Footer>
         </>
     )
 }
